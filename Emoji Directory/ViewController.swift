@@ -9,7 +9,7 @@
 import UIKit
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-
+    
     @IBOutlet weak var testTableView: UITableView!
     
     override func viewDidLoad() {
@@ -19,13 +19,19 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         testTableView.dataSource = self
         testTableView.delegate = self
     }
+    var emojis = ["😀","😱","😍","💩","👠","🐻","🐬","⛑"]
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return emojis.count
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "moveSegue", sender: "⏰")
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
+        cell.textLabel?.text = emojis[indexPath.row]
         return cell
     }
     
@@ -33,7 +39,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
+    
+    
 }
 
